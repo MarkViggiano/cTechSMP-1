@@ -1,0 +1,13 @@
+  name: SMP
+  main: me.mark.techsmp.Main
+  version: 1.0
+  commands:
+    g:
+      description: Interact with groups
+      usage: /g <args>
+    coords:
+      description: Send cords
+      usage: /coords
+    setrole:
+      description: Set a player's role
+      usage: /setrole <player name> <rank name>
