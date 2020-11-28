@@ -22,6 +22,11 @@ public class GCommand implements CommandExecutor {
         SMPPlayer smpPlayer = Main.getInstance().getSmpPlayerManager().getSMPPlayerFromPlayer(player);
         if (smpPlayer == null) smpPlayer = new SMPPlayer(player, false);
 
+        if (args.length == 0) {
+            sendInvalidArgumentsMessage(player);
+            return true;
+        }
+
         String initialParam = args[0];
 
         switch (initialParam.toLowerCase()) {
@@ -87,20 +92,24 @@ public class GCommand implements CommandExecutor {
 
             case "help":
             default:
-                player.sendMessage(String.format("%s %s Invalid arguments! Proper commands:", Main.getPrefix(), ChatColor.RED));
-                player.sendMessage(String.format("%s /g create <name> | Create a group.", ChatColor.RED));
-                player.sendMessage(String.format("%s /g delete <name> | Delete a group.", ChatColor.RED));
-                player.sendMessage(String.format("%s /g invite <player name> | Invite player to group.", ChatColor.RED));
-                player.sendMessage(String.format("%s /g join <group name> | Join a group.", ChatColor.RED));
-                player.sendMessage(String.format("%s /g leave | Leave your current group.", ChatColor.RED));
-                player.sendMessage(String.format("%s /g kick <player name> | Kick Player from group.", ChatColor.RED));
-                player.sendMessage(String.format("%s /g color <color name> | Change the color of your group.", ChatColor.RED));
-                player.sendMessage(String.format("%s /g chat | Toggle on/off a chat only you and your group mates can see. ", ChatColor.RED));
+                sendInvalidArgumentsMessage(player);
                 break;
 
         }
 
         return true;
+    }
+
+    private void sendInvalidArgumentsMessage(Player player) {
+        player.sendMessage(String.format("%s %s Invalid arguments! Proper commands:", Main.getPrefix(), ChatColor.RED));
+        player.sendMessage(String.format("%s /g create <name> | Create a group.", ChatColor.RED));
+        player.sendMessage(String.format("%s /g delete <name> | Delete a group.", ChatColor.RED));
+        player.sendMessage(String.format("%s /g invite <player name> | Invite player to group.", ChatColor.RED));
+        player.sendMessage(String.format("%s /g join <group name> | Join a group.", ChatColor.RED));
+        player.sendMessage(String.format("%s /g leave | Leave your current group.", ChatColor.RED));
+        player.sendMessage(String.format("%s /g kick <player name> | Kick Player from group.", ChatColor.RED));
+        player.sendMessage(String.format("%s /g color <color name> | Change the color of your group.", ChatColor.RED));
+        player.sendMessage(String.format("%s /g chat | Toggle on/off a chat only you and your group mates can see. ", ChatColor.RED));
     }
 
     private void createGroup(String name, Player player, SMPPlayer smpPlayer) {

@@ -30,6 +30,9 @@ public class ChatUtil {
 
     public static String setupTab(@Nonnull SMPPlayer smpPlayer) {
 
+        if (smpPlayer.getPlayer() == null)
+            return String.format("%sSMP Player", ChatColor.YELLOW);
+
         String message = String.format("%s%s", ChatColor.YELLOW, smpPlayer.getPlayer().getName());
 
         if (smpPlayer.getGroup() != null) {

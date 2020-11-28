@@ -89,7 +89,7 @@ public class Config {
             Group group = new Group(name, UUID.fromString(data[1]));
             if (data[2].isEmpty() || data[2] == null) return;
             group.setColor(color);
-            Main.getInstance().getLogger().info(String.format("[Groups] Created group with name: %s | Owner: %s | Color: %s", group.getName(), group.getLeader().toString(), group.getColor()));
+            Main.getInstance().getLogger().info(String.format("[Groups] Created group with name: %s | Owner: %s | Color: %s", group.getName(), group.getLeader().toString(), group.getColor().name()));
         }
     }
 

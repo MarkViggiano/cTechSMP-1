@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5bfbcbbf-23e3-44b4-8c32-f7256e39c29e" name="Default Changelist" comment="" />
+    <list default="true" id="5bfbcbbf-23e3-44b4-8c32-f7256e39c29e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/me/mark/techsmp/Config.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/me/mark/techsmp/Config.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/me/mark/techsmp/commands/GCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/me/mark/techsmp/commands/GCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/me/mark/techsmp/groups/Group.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/me/mark/techsmp/groups/Group.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/me/mark/techsmp/player/SMPPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/me/mark/techsmp/player/SMPPlayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/me/mark/techsmp/util/ChatUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/me/mark/techsmp/util/ChatUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/libs/SMP-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/SMP-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/commands/CordsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/commands/CordsCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/commands/GCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/commands/GCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/groups/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/groups/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/player/SMPPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/player/SMPPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/util/ChatUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/util/ChatUtil.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,7 +53,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/cTechSMP" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1kTjVJlmskDtwrO1jbXHSi475X2" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -81,10 +110,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1605973813496">
+    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1606513379603">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.-761.2560.1400@0.0.1920.1040" timestamp="1605973813496" />
+    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.-761.2560.1400@0.0.1920.1040" timestamp="1606513379603" />
     <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1605739279415">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

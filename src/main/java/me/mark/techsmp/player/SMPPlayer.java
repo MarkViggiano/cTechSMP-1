@@ -74,7 +74,8 @@ public class SMPPlayer {
 
     public void setRank(Rank rank, boolean fromConfig) {
         this.rank = rank;
-        getPlayer().setPlayerListName(ChatUtil.setupTab(this));
+        if (getPlayer() != null)
+            getPlayer().setPlayerListName(ChatUtil.setupTab(this));
         if (fromConfig) return;
         Main.getInstance().getConfigManager().updatePlayerStats(this);
     }

@@ -16,15 +16,18 @@ public class CordsCommand implements CommandExecutor {
         Player player = (Player) commandSender;
         SMPPlayer smpPlayer = Main.getInstance().getSmpPlayerManager().getSMPPlayerFromPlayer(player);
         if (smpPlayer == null) return true;
-        Group group = smpPlayer.getGroup();
-        String message = String.format("%s %s%s's coords: %s, %s, %s on %s", Main.getPrefix(), smpPlayer.getGroup().getColor(), player.getDisplayName(),
-                player.getLocation().getBlockX(), player.getLocation().getBlockY(), player.getLocation().getBlockZ(), player.getLocation().getWorld().getEnvironment().name());
-        if (group == null) {
+        if (smpPlayer.getGroup() == null) {
             player.sendMessage(String.format("%s You must be in a group to use this command!", Main.getPrefix()));
             return true;
         }
 
+        Group group = smpPlayer.getGroup();
+        String message = String.format("%s %s%s's coords: %s, %s, %s on %s", Main.getPrefix(), smpPlayer.getGroup().getColor(), player.getDisplayName(),
+                player.getLocation().getBlockX(), player.getLocation().getBlockY(), player.getLocation().getBlockZ(), player.getLocation().getWorld().getEnvironment().name());
+
+
         for (SMPPlayer member : group.getMembers()) {
+            if (member == null || member.getPlayer() == null) continue;
             if (member.getPlayer().isOnline()) member.getPlayer().sendMessage(message);
         }
 

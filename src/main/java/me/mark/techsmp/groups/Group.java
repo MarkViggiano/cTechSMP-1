@@ -76,8 +76,9 @@ public class Group {
         this.members.add(smpPlayer);
         if (smpPlayer.getInvites().contains(this)) smpPlayer.removeInvite(this);
         for (SMPPlayer player : getMembers()) {
-            if (smpPlayer.getPlayer() == null) continue;
-            if(player.getPlayer().isOnline()) player.getPlayer().sendMessage(String.format("%s %s joined!", Main.getPrefix(), smpPlayer.getPlayer().getDisplayName()));
+            if (smpPlayer.getPlayer() == null || player.getPlayer() == null) continue;
+            if (player.getPlayer().isOnline())
+                player.getPlayer().sendMessage(String.format("%s %s joined!", Main.getPrefix(), smpPlayer.getPlayer().getDisplayName()));
         }
         if (smpPlayer.getPlayer() != null) smpPlayer.getPlayer().setPlayerListName(ChatUtil.setupTab(smpPlayer));
     }
@@ -85,9 +86,11 @@ public class Group {
     public void removeMember(SMPPlayer smpPlayer) {
         this.members.remove(smpPlayer);
         for (SMPPlayer player : getMembers()) {
+            if (player.getPlayer() == null || smpPlayer.getPlayer() == null) continue;
             if (player.getPlayer().isOnline()) player.getPlayer().sendMessage(String.format("%s %s has left the group!", Main.getPrefix(), smpPlayer.getPlayer().getDisplayName()));
         }
         smpPlayer.setGroup(null, false);
+        if (smpPlayer.getPlayer() == null) return;
         smpPlayer.getPlayer().setPlayerListName(String.format("%s%s", ChatColor.YELLOW, smpPlayer.getPlayer().getDisplayName()));
         smpPlayer.getPlayer().sendMessage(String.format("%s You have left %s%s%s!", Main.getPrefix(), getColor(), getName(), ChatColor.WHITE));
     }
@@ -114,6 +117,7 @@ public class Group {
 
     public void updateGroupMemberTabs() {
         for (SMPPlayer smpPlayer : getMembers()) {
+            if (smpPlayer == null || smpPlayer.getPlayer() == null) continue;
             smpPlayer.getPlayer().setPlayerListName(ChatUtil.setupTab(smpPlayer));
         }
     }
