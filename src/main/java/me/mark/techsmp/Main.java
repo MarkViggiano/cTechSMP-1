@@ -29,6 +29,7 @@ public class Main extends JavaPlugin {
         configManager.generatePlayersFromConfig();
         registerListeners();
         registerCommands();
+        registerRecipes();
         getLogger().info("Loaded plugin!");
     }
 
@@ -41,6 +42,10 @@ public class Main extends JavaPlugin {
     private void loadConfig() {
         getConfig().options().copyDefaults(true);
         saveConfig();
+    }
+
+    private void registerRecipes() {
+        //TODO: add recipes
     }
 
     private void registerCommands() {
