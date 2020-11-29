@@ -1,5 +1,6 @@
 package me.mark.techsmp;
 
+import me.mark.techsmp.boss.SMPEntityManager;
 import me.mark.techsmp.commands.CordsCommand;
 import me.mark.techsmp.commands.GCommand;
 import me.mark.techsmp.commands.RoleCommand;
@@ -14,6 +15,7 @@ public class Main extends JavaPlugin {
 
     private static Main INSTANCE;
     private SMPPlayerManager smpPlayerManager;
+    private SMPEntityManager smpEntityManager;
     private GroupManager groupManager;
     private Config configManager;
     private static String prefix = String.format("%s[%scTech SMP%s]%s", ChatColor.GRAY, ChatColor.YELLOW, ChatColor.GRAY, ChatColor.WHITE);
@@ -23,6 +25,7 @@ public class Main extends JavaPlugin {
         INSTANCE = this;
         groupManager = new GroupManager(this);
         smpPlayerManager = new SMPPlayerManager(this);
+        smpEntityManager = new SMPEntityManager(this);
         loadConfig();
         configManager = new Config(this);
         configManager.generateGroupsFromConfig();
@@ -69,6 +72,10 @@ public class Main extends JavaPlugin {
 
     public SMPPlayerManager getSmpPlayerManager() {
         return smpPlayerManager;
+    }
+
+    public SMPEntityManager getSmpEntityManager() {
+        return smpEntityManager;
     }
 
     public static Main getInstance() {
