@@ -6,6 +6,7 @@ import me.mark.techsmp.commands.RoleCommand;
 import me.mark.techsmp.groups.GroupManager;
 import me.mark.techsmp.listeners.ChatListener;
 import me.mark.techsmp.listeners.PlayerConnectionListener;
+import me.mark.techsmp.listeners.SleepListener;
 import me.mark.techsmp.player.SMPPlayerManager;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -57,6 +58,7 @@ public class Main extends JavaPlugin {
     private void registerListeners() {
         new PlayerConnectionListener(this);
         new ChatListener(this);
+        new SleepListener(this);
     }
 
     public Config getConfigManager() {
