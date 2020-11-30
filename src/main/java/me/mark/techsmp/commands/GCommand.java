@@ -20,7 +20,7 @@ public class GCommand implements CommandExecutor {
 
         Player player = (Player) commandSender;
         SMPPlayer smpPlayer = Main.getInstance().getSmpPlayerManager().getSMPPlayerFromPlayer(player);
-        if (smpPlayer == null) smpPlayer = new SMPPlayer(player, false);
+        if (smpPlayer == null) smpPlayer = new SMPPlayer(player.getUniqueId(), player, false);
 
         if (args.length == 0) {
             sendInvalidArgumentsMessage(player);

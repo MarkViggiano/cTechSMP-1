@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class SMPPlayer {
 
@@ -18,11 +19,11 @@ public class SMPPlayer {
     private boolean groupChat;
     private Rank rank;
 
-    public SMPPlayer(Player player, boolean generated) {
+    public SMPPlayer(UUID uuid, Player player, boolean generated) {
         this.player = player;
         this.invites = new ArrayList<>();
         this.groupChat = false;
-        Main.getInstance().getSmpPlayerManager().addSMPPlayer(this);
+        Main.getInstance().getSmpPlayerManager().addSMPPlayer(uuid, this);
         if (generated) return;
         player.setPlayerListHeader(String.format("%s%scTech SMP", ChatColor.RED, ChatColor.BOLD));
         setRank(Rank.NONE, true);

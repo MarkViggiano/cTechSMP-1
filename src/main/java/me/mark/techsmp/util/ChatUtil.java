@@ -8,13 +8,12 @@ import javax.annotation.Nonnull;
 public class ChatUtil {
 
     public static String setupMessage(SMPPlayer smpPlayer, String sendMessage) {
+
+        if (smpPlayer == null) return sendMessage;
+
         String message = String.format("%s%s > %s%s", ChatColor.GRAY, smpPlayer.getPlayer().getName(), ChatColor.WHITE, sendMessage);
         if (smpPlayer.isGroupChatting()) {
             message = String.format("%s%s > %s%s", ChatColor.GRAY, smpPlayer.getPlayer().getName(), smpPlayer.getGroup().getColor(), sendMessage);
-        }
-
-        if (smpPlayer == null) {
-            return message;
         }
 
         if (smpPlayer.getGroup() != null) {

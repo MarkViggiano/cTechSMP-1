@@ -30,7 +30,7 @@ public class RoleCommand implements CommandExecutor {
             return true;
         }
         SMPPlayer smpPlayer = Main.getInstance().getSmpPlayerManager().getSMPPlayerFromPlayer(player);
-        if (smpPlayer == null) smpPlayer = new SMPPlayer(player, false);
+        if (smpPlayer == null) smpPlayer = new SMPPlayer(player.getUniqueId(), player, false);
 
         String playerName = args[0];
         String rankName = args[1];
