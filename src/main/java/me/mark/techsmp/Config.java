@@ -38,7 +38,7 @@ public class Config {
             //PLAYER
             String uuid = playerInfo[0];
             Player player = Bukkit.getOfflinePlayer(UUID.fromString(uuid)).getPlayer();
-            SMPPlayer smpPlayer = new SMPPlayer(player, true);
+            SMPPlayer smpPlayer = new SMPPlayer(UUID.fromString(uuid), player, true);
 
             //RANK
             String rankName = playerInfo[2];

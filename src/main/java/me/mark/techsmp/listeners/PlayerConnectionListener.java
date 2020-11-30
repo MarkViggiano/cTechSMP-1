@@ -30,7 +30,7 @@ public class PlayerConnectionListener extends BaseListener {
             onlinePlayer.setPlayerListFooter(String.format("%s%sPlayers Online: %s%s", ChatColor.WHITE, ChatColor.BOLD, ChatColor.RED, Bukkit.getOnlinePlayers().size()));
 
         SMPPlayer smpPlayer = Main.getInstance().getSmpPlayerManager().getSMPPlayerFromPlayer(player);
-        if (smpPlayer == null) smpPlayer = new SMPPlayer(player, false);
+        if (smpPlayer == null) smpPlayer = new SMPPlayer(player.getUniqueId(), player, false);
 
         smpPlayer.setPlayer(player);
         player.setPlayerListHeader(String.format("%s%scTech SMP", ChatColor.RED, ChatColor.BOLD));

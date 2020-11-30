@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5bfbcbbf-23e3-44b4-8c32-f7256e39c29e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/util/CraftUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/commands/GCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/commands/GCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/commands/RoleCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/commands/RoleCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/listeners/ChatListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/listeners/ChatListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/listeners/PlayerConnectionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/listeners/PlayerConnectionListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/player/SMPPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/player/SMPPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/player/SMPPlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/player/SMPPlayerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/util/ChatUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/mark/techsmp/util/ChatUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,10 +91,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1606513379603">
+    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser" timestamp="1606608651464">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.-761.2560.1400@0.0.1920.1040" timestamp="1606513379603" />
+    <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.-761.2560.1400@0.0.1920.1040" timestamp="1606608651464" />
     <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1605739279415">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

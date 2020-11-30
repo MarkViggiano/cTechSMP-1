@@ -16,15 +16,14 @@ public class SMPPlayerManager {
         this.smpPlayers = new HashMap<>();
     }
 
-    public void addSMPPlayer(SMPPlayer smpPlayer) {
+    public void addSMPPlayer(UUID uuid, SMPPlayer smpPlayer) {
         if (smpPlayer == null) return;
-        if (smpPlayer.getPlayer() == null) return;
-        this.smpPlayers.putIfAbsent(smpPlayer.getPlayer().getUniqueId(), smpPlayer);
+        this.smpPlayers.putIfAbsent(uuid, smpPlayer);
     }
 
-    public void removeSMPPlayer(SMPPlayer smpPlayer) {
-        if (!smpPlayers.containsValue(smpPlayer)) return;
-        this.smpPlayers.remove(smpPlayer.getPlayer().getUniqueId());
+    public void removeSMPPlayer(UUID uuid) {
+        if (!smpPlayers.containsValue(uuid)) return;
+        this.smpPlayers.remove(uuid);
     }
 
     public SMPPlayer getSMPPlayerFromPlayer(Player player) {
