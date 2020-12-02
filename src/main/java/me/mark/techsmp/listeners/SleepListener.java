@@ -2,8 +2,6 @@ package me.mark.techsmp.listeners;
 
 import me.mark.techsmp.Main;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerBedEnterEvent;
 
@@ -14,9 +12,11 @@ public class SleepListener extends BaseListener {
 
     @EventHandler
     public void playerSleepEvent(PlayerBedEnterEvent event) {
-        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-            onlinePlayer.sendMessage(String.format("%sIt's a new day!", ChatColor.YELLOW));
-        }
-        event.getPlayer().getWorld().setTime(0);
+        if (event.getBedEnterResult() != PlayerBedEnterEvent.BedEnterResult.OK) return;
+
+        Bukkit.getScheduler().scheduleSyncDelayedTask(getMain(), () -> {
+            Bukkit.broadcastMessage(String.format("%s %s skipped the night!", Main.getPrefix(), event.getPlayer().getDisplayName()));
+            event.getPlayer().getWorld().setTime(0);
+        }, 50);
     }
 }

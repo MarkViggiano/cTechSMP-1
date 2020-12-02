@@ -44,6 +44,8 @@ public class PlayerConnectionListener extends BaseListener {
             }
         }, 20);
 
+        player.setDisplayName(ChatUtil.setupTab(smpPlayer));
+
     }
 
     @EventHandler

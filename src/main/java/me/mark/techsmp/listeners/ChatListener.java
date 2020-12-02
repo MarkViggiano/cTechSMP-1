@@ -24,6 +24,7 @@ public class ChatListener extends BaseListener {
             e.setCancelled(true);
 
             for (SMPPlayer member : smpPlayer.getGroup().getMembers()) {
+                if (member.getPlayer() == null) continue;
                 if (member.getPlayer().isOnline()) member.getPlayer().sendMessage(message);
             }
             return;
