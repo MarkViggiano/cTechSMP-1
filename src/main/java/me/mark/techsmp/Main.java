@@ -7,7 +7,11 @@ import me.mark.techsmp.listeners.ChatListener;
 import me.mark.techsmp.listeners.PlayerConnectionListener;
 import me.mark.techsmp.listeners.SleepListener;
 import me.mark.techsmp.player.SMPPlayerManager;
+import me.mark.techsmp.shop.Shop;
+import me.mark.techsmp.shop.ShopItem;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.ResultSet;
@@ -21,6 +25,8 @@ public class Main extends JavaPlugin {
     private GroupManager groupManager;
     private Config configManager;
     private DatabaseManager databaseManager;
+    private Shop itemShop;
+    private Shop groupShop;
     private static final String prefix = String.format("%s[%scTech SMP%s]%s", ChatColor.GRAY, ChatColor.YELLOW, ChatColor.GRAY, ChatColor.WHITE);
 
     @Override
@@ -34,6 +40,8 @@ public class Main extends JavaPlugin {
         createGroupsFromDatabase();
         registerListeners();
         registerCommands();
+        registerItemShop();
+        registerGroupShop();
         getLogger().info("Loaded plugin!");
     }
 
@@ -87,6 +95,20 @@ public class Main extends JavaPlugin {
         }
     }
 
+    private void registerItemShop() {
+        Shop shop = new Shop("Item Shop", 5);
+
+        this.itemShop = shop;
+    }
+
+    private void registerGroupShop() {
+        Shop shop = new Shop("Group Shop", 1);
+        shop.addItem(new ShopItem(new ItemStack(Material.BEACON), 50000, 100000));
+        shop.addItem(new ShopItem(new ItemStack(Material.ENCHANTING_TABLE), 10000, 20000));
+        shop.addItem(new ShopItem(new ItemStack(Material.ANVIL), 5000, 10000));
+        this.groupShop = shop;
+    }
+
     public Config getConfigManager() {
         return configManager;
     }
@@ -101,6 +123,15 @@ public class Main extends JavaPlugin {
 
     public SMPPlayerManager getSmpPlayerManager() {
         return smpPlayerManager;
+    }
+
+
+    public Shop getItemShop() {
+        return itemShop;
+    }
+
+    public Shop getGroupShop() {
+        return groupShop;
     }
 
     public static Main getInstance() {

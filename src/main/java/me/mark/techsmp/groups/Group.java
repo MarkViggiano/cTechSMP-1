@@ -54,10 +54,10 @@ public class Group {
         return members;
     }
 
-    public void addMember(SMPPlayer smpPlayer) {
+    public void addMember(SMPPlayer smpPlayer, boolean joining) {
         smpPlayer.setGroup(this);
         this.members.add(smpPlayer);
-        Main.getInstance().getDatabaseManager().addGroupLog(smpPlayer.getPlayer().getUniqueId(), "None", getName());
+        if (joining) Main.getInstance().getDatabaseManager().addGroupLog(smpPlayer.getPlayer().getUniqueId(), "None", getName());
         if (smpPlayer.getInvites().contains(this)) smpPlayer.removeInvite(this);
         for (SMPPlayer player : getMembers()) {
             if (smpPlayer.getPlayer() == null || player.getPlayer() == null) continue;

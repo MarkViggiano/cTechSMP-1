@@ -94,6 +94,10 @@ public class GCommand implements CommandExecutor {
                 sendGroupBalance(smpPlayer);
                 break;
 
+            case "shop":
+                openGroupShop(smpPlayer);
+                break;
+
             case "help":
             default:
                 sendInvalidArgumentsMessage(player);
@@ -115,6 +119,7 @@ public class GCommand implements CommandExecutor {
         player.sendMessage(String.format("%s /g color <color name> | Change the color of your group.", ChatColor.RED));
         player.sendMessage(String.format("%s /g chat | Toggle on/off a chat only you and your group mates can see.", ChatColor.RED));
         player.sendMessage(String.format("%s /g bal | Show the balance of your group.", ChatColor.RED));
+        player.sendMessage(String.format("%s /g shop | Open the group shop.", ChatColor.RED));
     }
 
     private void sendGroupBalance(SMPPlayer smpPlayer) {
@@ -125,6 +130,22 @@ public class GCommand implements CommandExecutor {
         }
 
         smpPlayer.getPlayer().sendMessage(String.format("%s Your groups balance: %s%s%s coins", Main.getPrefix(), ChatColor.GREEN, group.getCoins(), ChatColor.WHITE));
+
+    }
+
+    private void openGroupShop(SMPPlayer smpPlayer) {
+        Group group = smpPlayer.getGroup();
+        if (group == null) {
+            smpPlayer.getPlayer().sendMessage(String.format("%s You are not in a group!", Main.getPrefix()));
+            return;
+        }
+
+        if (group.isLeader(smpPlayer)) {
+            smpPlayer.getPlayer().openInventory(Main.getInstance().getGroupShop().getInventory());
+            return;
+        }
+
+        smpPlayer.getPlayer().sendMessage(String.format("%s Only the group leader can use the group shop!", Main.getPrefix()));
 
     }
 
@@ -147,7 +168,7 @@ public class GCommand implements CommandExecutor {
         }
 
         Group group = new Group(name, player.getUniqueId(), ChatColor.GREEN, 0);
-        group.addMember(smpPlayer);
+        group.addMember(smpPlayer, true);
         Main.getInstance().getDatabaseManager().addGroup(group);
         player.sendMessage(String.format("%s Created group with name: %s%s%s!", Main.getPrefix(), ChatColor.GREEN, group.getName(), ChatColor.WHITE));
         player.setPlayerListName(String.format("%s[%s%s%s] %s%s",
@@ -233,7 +254,7 @@ public class GCommand implements CommandExecutor {
             return;
         }
 
-        group.addMember(smpPlayer);
+        group.addMember(smpPlayer, true);
         smpPlayer.getPlayer().sendMessage(String.format("%s You joined group: %s%s%s!", Main.getPrefix(), group.getColor(), group.getName(), ChatColor.WHITE));
     }
 
