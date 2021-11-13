@@ -90,6 +90,10 @@ public class GCommand implements CommandExecutor {
                 toggleGroupChat(player);
                 break;
 
+            case "bal":
+                sendGroupBalance(smpPlayer);
+                break;
+
             case "help":
             default:
                 sendInvalidArgumentsMessage(player);
@@ -109,7 +113,19 @@ public class GCommand implements CommandExecutor {
         player.sendMessage(String.format("%s /g leave | Leave your current group.", ChatColor.RED));
         player.sendMessage(String.format("%s /g kick <player name> | Kick Player from group.", ChatColor.RED));
         player.sendMessage(String.format("%s /g color <color name> | Change the color of your group.", ChatColor.RED));
-        player.sendMessage(String.format("%s /g chat | Toggle on/off a chat only you and your group mates can see. ", ChatColor.RED));
+        player.sendMessage(String.format("%s /g chat | Toggle on/off a chat only you and your group mates can see.", ChatColor.RED));
+        player.sendMessage(String.format("%s /g bal | Show the balance of your group.", ChatColor.RED));
+    }
+
+    private void sendGroupBalance(SMPPlayer smpPlayer) {
+        Group group = smpPlayer.getGroup();
+        if (group == null) {
+            smpPlayer.getPlayer().sendMessage(String.format("%s You are not in a group!", Main.getPrefix()));
+            return;
+        }
+
+        smpPlayer.getPlayer().sendMessage(String.format("%s Your groups balance: %s%s%s coins", Main.getPrefix(), ChatColor.GREEN, group.getCoins(), ChatColor.WHITE));
+
     }
 
     private void createGroup(String name, Player player, SMPPlayer smpPlayer) {

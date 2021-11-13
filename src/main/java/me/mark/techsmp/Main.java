@@ -1,8 +1,6 @@
 package me.mark.techsmp;
 
-import me.mark.techsmp.commands.CordsCommand;
-import me.mark.techsmp.commands.GCommand;
-import me.mark.techsmp.commands.RoleCommand;
+import me.mark.techsmp.commands.*;
 import me.mark.techsmp.groups.Group;
 import me.mark.techsmp.groups.GroupManager;
 import me.mark.techsmp.listeners.ChatListener;
@@ -54,6 +52,8 @@ public class Main extends JavaPlugin {
         getCommand("g").setExecutor(new GCommand());
         getCommand("coords").setExecutor(new CordsCommand());
         getCommand("setrole").setExecutor(new RoleCommand());
+        getCommand("bal").setExecutor(new BalCommand());
+        getCommand("pay").setExecutor(new PayCommand());
     }
 
     private void registerListeners() {

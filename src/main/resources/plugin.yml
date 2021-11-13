@@ -11,3 +11,9 @@
     setrole:
       description: Set a player's role
       usage: /setrole <player name> <rank name>
+    bal:
+      description: Get a player's balance
+      usage: /bal
+    pay:
+      description: Pay a player
+      usage: /pay <name> <amount>
