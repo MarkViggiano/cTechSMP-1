@@ -16,9 +16,8 @@ public class ChatListener extends BaseListener {
 
     @EventHandler
     public void chatEvent(AsyncPlayerChatEvent e) {
-        SMPPlayer smpPlayer = getMain().getSmpPlayerManager().getSMPPlayerFromPlayer(e.getPlayer());
-
-        String message = ChatUtil.setupMessage(smpPlayer, e.getMessage());
+        SMPPlayer smpPlayer = SMPPlayer.createSMPPlayer(e.getPlayer());
+        String message = ChatUtil.setupMessage(smpPlayer, e.getPlayer(), e.getMessage());
 
         if (smpPlayer.isGroupChatting()) {
             e.setCancelled(true);

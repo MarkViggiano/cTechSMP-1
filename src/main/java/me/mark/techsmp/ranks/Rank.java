@@ -4,14 +4,11 @@ import org.bukkit.ChatColor;
 
 public enum Rank {
 
-    OWNER("Owner", ChatColor.DARK_RED),
-    DEVELOPER("Developer", ChatColor.RED),
-    ADMIN("Admin", ChatColor.GOLD),
-    MOD("Mod", ChatColor.YELLOW),
+    COUNCIL("Council", ChatColor.DARK_RED),
     NONE("none", ChatColor.WHITE);
 
-    private String name;
-    private ChatColor color;
+    private final String name;
+    private final ChatColor color;
 
     Rank(String name, ChatColor color) {
         this.name = name;
@@ -25,4 +22,10 @@ public enum Rank {
     public ChatColor getColor() {
         return color;
     }
+
+    public static Rank getRankByName(String name) {
+        if (name.equalsIgnoreCase("council")) return COUNCIL;
+        return NONE;
+    }
+
 }

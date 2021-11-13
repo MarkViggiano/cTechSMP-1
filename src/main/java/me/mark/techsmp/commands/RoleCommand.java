@@ -30,7 +30,7 @@ public class RoleCommand implements CommandExecutor {
             return true;
         }
         SMPPlayer smpPlayer = Main.getInstance().getSmpPlayerManager().getSMPPlayerFromPlayer(player);
-        if (smpPlayer == null) smpPlayer = new SMPPlayer(player.getUniqueId(), player, false);
+        if (smpPlayer == null) return true;
 
         String playerName = args[0];
         String rankName = args[1];
@@ -46,25 +46,8 @@ public class RoleCommand implements CommandExecutor {
             return true;
         }
 
-        switch (rankName.toLowerCase()) {
-            case "owner":
-                smpRankedPlayer.setRank(Rank.OWNER, false);
-                break;
-
-            case "dev":
-            case "developer":
-                smpRankedPlayer.setRank(Rank.DEVELOPER, false);
-                break;
-            case "admin":
-                smpRankedPlayer.setRank(Rank.ADMIN, false);
-                break;
-            case "mod":
-                smpRankedPlayer.setRank(Rank.MOD, false);
-                break;
-            default:
-                smpRankedPlayer.setRank(Rank.NONE, false);
-                break;
-        }
+        if (rankName.equalsIgnoreCase("council")) smpRankedPlayer.setRank(Rank.COUNCIL);
+        else smpRankedPlayer.setRank(Rank.NONE);
 
         commandSender.sendMessage(String.format("%s %s's role has been updated to: %s%s%s!",
                  Main.getPrefix(), playerName, smpRankedPlayer.getRank().getColor(), smpRankedPlayer.getRank().getName(), ChatColor.WHITE));

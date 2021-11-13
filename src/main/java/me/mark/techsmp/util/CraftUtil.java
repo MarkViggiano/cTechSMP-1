@@ -1,5 +1,6 @@
 package me.mark.techsmp.util;
 
+import me.mark.techsmp.Main;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
@@ -20,6 +21,7 @@ public class CraftUtil {
         recipe.setIngredient('7', bottomLeft);
         recipe.setIngredient('8', bottomMiddle);
         recipe.setIngredient('9', bottomRight);
+        Main.getInstance().getServer().addRecipe(recipe);
         return recipe;
     }
 

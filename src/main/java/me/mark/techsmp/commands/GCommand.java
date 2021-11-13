@@ -11,6 +11,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.sql.SQLException;
 import java.util.Map;
 
 public class GCommand implements CommandExecutor {
@@ -20,7 +21,6 @@ public class GCommand implements CommandExecutor {
 
         Player player = (Player) commandSender;
         SMPPlayer smpPlayer = Main.getInstance().getSmpPlayerManager().getSMPPlayerFromPlayer(player);
-        if (smpPlayer == null) smpPlayer = new SMPPlayer(player.getUniqueId(), player, false);
 
         if (args.length == 0) {
             sendInvalidArgumentsMessage(player);
@@ -113,9 +113,13 @@ public class GCommand implements CommandExecutor {
     }
 
     private void createGroup(String name, Player player, SMPPlayer smpPlayer) {
-        if (Main.getInstance().getConfigManager().isGroupInConfig(name) || Main.getInstance().getGroupManager().getGroups().containsValue(name)) {
-            player.sendMessage(String.format("%s Group with name: %s%s%s already exists!", Main.getPrefix(), ChatColor.GREEN, name, ChatColor.WHITE));
-            return;
+        try {
+            if (Main.getInstance().getDatabaseManager().getGroupData(name).next() || Main.getInstance().getGroupManager().getGroups().containsValue(name)) {
+                player.sendMessage(String.format("%s Group with name: %s%s%s already exists!", Main.getPrefix(), ChatColor.GREEN, name, ChatColor.WHITE));
+                return;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         for (Map.Entry<String, Group> entry : Main.getInstance().getGroupManager().getGroups().entrySet()) {
@@ -126,7 +130,9 @@ public class GCommand implements CommandExecutor {
             }
         }
 
-        Group group = new Group(name, smpPlayer);
+        Group group = new Group(name, player.getUniqueId(), ChatColor.GREEN, 0);
+        group.addMember(smpPlayer);
+        Main.getInstance().getDatabaseManager().addGroup(group);
         player.sendMessage(String.format("%s Created group with name: %s%s%s!", Main.getPrefix(), ChatColor.GREEN, group.getName(), ChatColor.WHITE));
         player.setPlayerListName(String.format("%s[%s%s%s] %s%s",
                 ChatColor.GRAY, group.getColor(), group.getName(), ChatColor.GRAY, ChatColor.YELLOW, player.getName()));
@@ -143,10 +149,12 @@ public class GCommand implements CommandExecutor {
             return;
         }
 
-        player.sendMessage(String.format("%s Created group with name: %s%s%s!", Main.getPrefix(), ChatColor.GREEN, group.getName(), ChatColor.WHITE));
+        player.sendMessage(String.format("%s Deleted: %s%s%s!", Main.getPrefix(), ChatColor.GREEN, group.getName(), ChatColor.WHITE));
         for (SMPPlayer smpPlayer : group.getMembers()) {
-            if (smpPlayer.getPlayer().isOnline()) smpPlayer.getPlayer().setPlayerListName(ChatUtil.setupTab(smpPlayer));
+            if (smpPlayer.getPlayer().isOnline()) smpPlayer.getPlayer().setPlayerListName(ChatUtil.setupTab(smpPlayer, smpPlayer.getPlayer()));
+            group.removeMember(smpPlayer);
         }
+        Main.getInstance().getDatabaseManager().deleteGroup(group);
         group.deleteGroup();
     }
 
@@ -209,7 +217,7 @@ public class GCommand implements CommandExecutor {
             return;
         }
 
-        group.addMember(smpPlayer, false);
+        group.addMember(smpPlayer);
         smpPlayer.getPlayer().sendMessage(String.format("%s You joined group: %s%s%s!", Main.getPrefix(), group.getColor(), group.getName(), ChatColor.WHITE));
     }
 

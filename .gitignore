@@ -4,3 +4,4 @@ build/*
 gradle/*
 libs*
 src/test/*
+src/main/resources/config.yml

@@ -3,13 +3,13 @@ package me.mark.techsmp.util;
 import me.mark.techsmp.player.SMPPlayer;
 import me.mark.techsmp.ranks.Rank;
 import org.bukkit.ChatColor;
-import javax.annotation.Nonnull;
+import org.bukkit.entity.Player;
 
 public class ChatUtil {
 
-    public static String setupMessage(SMPPlayer smpPlayer, String sendMessage) {
+    public static String setupMessage(SMPPlayer smpPlayer, Player player, String sendMessage) {
 
-        if (smpPlayer == null) return sendMessage;
+        if (smpPlayer == null) smpPlayer = SMPPlayer.createSMPPlayer(player);
 
         String message = String.format("%s%s > %s%s", ChatColor.GRAY, smpPlayer.getPlayer().getName(), ChatColor.WHITE, sendMessage);
         if (smpPlayer.isGroupChatting()) {
@@ -27,10 +27,9 @@ public class ChatUtil {
         return message;
     }
 
-    public static String setupTab(@Nonnull SMPPlayer smpPlayer) {
-
-        if (smpPlayer.getPlayer() == null)
-            return String.format("%sSMP Player", ChatColor.YELLOW);
+    public static String setupTab(SMPPlayer smpPlayer, Player player) {
+        if (smpPlayer == null)
+            smpPlayer = SMPPlayer.createSMPPlayer(player);
 
         String message = String.format("%s%s", ChatColor.YELLOW, smpPlayer.getPlayer().getName());
 
