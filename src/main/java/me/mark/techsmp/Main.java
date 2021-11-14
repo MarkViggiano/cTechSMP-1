@@ -73,6 +73,7 @@ public class Main extends JavaPlugin {
         new SleepListener(this);
         new ShopInventoryListener(this);
         new CreatePortalListener(this);
+        new PlayerKillPlayerListener(this);
     }
 
     private void registerDatabaseConnection() {
