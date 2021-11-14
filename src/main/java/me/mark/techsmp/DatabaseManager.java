@@ -95,8 +95,8 @@ public class DatabaseManager {
     public boolean deleteGroup(Group group) {
         Connection conn = getConn();
         try {
-            PreparedStatement query = conn.prepareStatement("DELETE FROM groupsData WHERE name=?");
-            query.setString(1, group.getName());
+            PreparedStatement query = conn.prepareStatement("DELETE FROM groupsData WHERE ownerUuid=?");
+            query.setString(1, group.getLeader().toString());
             query.executeUpdate();
             return true;
         } catch (SQLException e) {

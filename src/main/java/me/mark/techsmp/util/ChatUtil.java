@@ -13,7 +13,11 @@ public class ChatUtil {
 
         String message = String.format("%s%s > %s%s", ChatColor.GRAY, smpPlayer.getPlayer().getName(), ChatColor.WHITE, sendMessage);
         if (smpPlayer.isGroupChatting()) {
-            message = String.format("%s%s > %s%s", ChatColor.GRAY, smpPlayer.getPlayer().getName(), smpPlayer.getGroup().getColor(), sendMessage);
+            if (smpPlayer.getGroup() != null) {
+                message = String.format("%s%s > %s%s", ChatColor.GRAY, smpPlayer.getPlayer().getName(), smpPlayer.getGroup().getColor(), sendMessage);
+            } else {
+                smpPlayer.toggleGroupChat();
+            }
         }
 
         if (smpPlayer.getGroup() != null) {

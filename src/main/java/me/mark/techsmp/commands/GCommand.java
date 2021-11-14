@@ -3,7 +3,6 @@ package me.mark.techsmp.commands;
 import me.mark.techsmp.Main;
 import me.mark.techsmp.groups.Group;
 import me.mark.techsmp.player.SMPPlayer;
-import me.mark.techsmp.util.ChatUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -12,6 +11,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class GCommand implements CommandExecutor {
@@ -268,8 +269,8 @@ public class GCommand implements CommandExecutor {
         }
 
         player.sendMessage(String.format("%s Deleted: %s%s%s!", Main.getPrefix(), ChatColor.GREEN, group.getName(), ChatColor.WHITE));
-        for (SMPPlayer smpPlayer : group.getMembers()) {
-            if (smpPlayer.getPlayer().isOnline()) smpPlayer.getPlayer().setPlayerListName(ChatUtil.setupTab(smpPlayer, smpPlayer.getPlayer()));
+        List<SMPPlayer> smpPlayers = new ArrayList<>(group.getMembers());
+        for (SMPPlayer smpPlayer : smpPlayers) {
             group.removeMember(smpPlayer);
         }
         Main.getInstance().getDatabaseManager().deleteGroup(group);

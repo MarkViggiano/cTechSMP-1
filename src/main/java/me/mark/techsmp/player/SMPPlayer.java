@@ -111,7 +111,7 @@ public class SMPPlayer {
                     Group group = main.getGroupManager().getGroupByName(groupName);
                     Rank rank = Rank.getRankByName(rankName);
                     smpPlayer = new SMPPlayer(player, rank, group, coins);
-                    group.addMember(smpPlayer, false);
+                    if (group != null) group.addMember(smpPlayer, false);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
