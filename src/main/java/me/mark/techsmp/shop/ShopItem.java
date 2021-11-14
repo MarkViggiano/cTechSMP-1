@@ -17,7 +17,7 @@ public class ShopItem {
                 String.format("%s Left-Click to buy 1 for: %s%s", ChatColor.YELLOW, ChatColor.GREEN, cost),
                 String.format("%s Shift + Left-Click to buy 64 for: %s%s", ChatColor.YELLOW, ChatColor.GREEN, 64 * cost),
                 String.format("%s Right-Click to sell 1 for: %s%s", ChatColor.YELLOW, ChatColor.RED, sellPrice),
-                String.format("%s Shift + Right-Click to sell all", ChatColor.YELLOW)
+                String.format("%s Shift + Right-Click to sell 64", ChatColor.YELLOW)
         ));
         this.sellPrice = sellPrice;
         this.cost = cost;

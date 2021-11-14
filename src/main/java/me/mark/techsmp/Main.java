@@ -3,19 +3,21 @@ package me.mark.techsmp;
 import me.mark.techsmp.commands.*;
 import me.mark.techsmp.groups.Group;
 import me.mark.techsmp.groups.GroupManager;
-import me.mark.techsmp.listeners.ChatListener;
-import me.mark.techsmp.listeners.PlayerConnectionListener;
-import me.mark.techsmp.listeners.SleepListener;
+import me.mark.techsmp.listeners.*;
 import me.mark.techsmp.player.SMPPlayerManager;
 import me.mark.techsmp.shop.Shop;
 import me.mark.techsmp.shop.ShopItem;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Recipe;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 import java.util.UUID;
 
 public class Main extends JavaPlugin {
@@ -42,6 +44,7 @@ public class Main extends JavaPlugin {
         registerCommands();
         registerItemShop();
         registerGroupShop();
+        removeRecipes();
         getLogger().info("Loaded plugin!");
     }
 
@@ -68,6 +71,8 @@ public class Main extends JavaPlugin {
         new PlayerConnectionListener(this);
         new ChatListener(this);
         new SleepListener(this);
+        new ShopInventoryListener(this);
+        new CreatePortalListener(this);
     }
 
     private void registerDatabaseConnection() {
@@ -107,6 +112,16 @@ public class Main extends JavaPlugin {
         shop.addItem(new ShopItem(new ItemStack(Material.ENCHANTING_TABLE), 10000, 20000));
         shop.addItem(new ShopItem(new ItemStack(Material.ANVIL), 5000, 10000));
         this.groupShop = shop;
+    }
+
+    private void removeRecipes() {
+        Iterator<Recipe> it = getServer().recipeIterator();
+        List<Material> removeMaterials = Arrays.asList(Material.BEACON, Material.ENCHANTING_TABLE, Material.ANVIL, Material.LECTERN);
+        Recipe recipe;
+        while (it.hasNext()) {
+            recipe = it.next();
+            if (recipe != null && removeMaterials.contains(recipe.getResult().getType())) it.remove();
+        }
     }
 
     public Config getConfigManager() {

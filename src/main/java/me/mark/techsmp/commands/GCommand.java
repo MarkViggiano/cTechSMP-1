@@ -98,6 +98,23 @@ public class GCommand implements CommandExecutor {
                 openGroupShop(smpPlayer);
                 break;
 
+            case "deposit":
+            case "depo":
+                if (args.length < 2) {
+                    player.sendMessage(String.format("%s Invalid arguments! Missing deposit amount!", Main.getPrefix()));
+                    break;
+                }
+                createGroupDeposit(smpPlayer, args[1]);
+                break;
+
+            case "withdraw":
+                if (args.length < 2) {
+                    player.sendMessage(String.format("%s Invalid arguments! Missing deposit amount!", Main.getPrefix()));
+                    break;
+                }
+                createGroupWithdraw(smpPlayer, args[1]);
+                break;
+
             case "help":
             default:
                 sendInvalidArgumentsMessage(player);
@@ -119,7 +136,71 @@ public class GCommand implements CommandExecutor {
         player.sendMessage(String.format("%s /g color <color name> | Change the color of your group.", ChatColor.RED));
         player.sendMessage(String.format("%s /g chat | Toggle on/off a chat only you and your group mates can see.", ChatColor.RED));
         player.sendMessage(String.format("%s /g bal | Show the balance of your group.", ChatColor.RED));
+        player.sendMessage(String.format("%s /g deposit <amount> | Deposit some or all of your money into the group account.", ChatColor.RED));
+        player.sendMessage(String.format("%s /g withdraw <amount> | Withdraw some or all of the money in the group account.", ChatColor.RED));
         player.sendMessage(String.format("%s /g shop | Open the group shop.", ChatColor.RED));
+    }
+
+    private void createGroupDeposit(SMPPlayer smpPlayer, String depositAmount) {
+        int amount;
+        try {
+            amount = Integer.parseInt(depositAmount);
+        } catch (NumberFormatException e) {
+            smpPlayer.getPlayer().sendMessage(String.format("%s Invalid number!", Main.getPrefix()));
+            return;
+        }
+
+        Group group = smpPlayer.getGroup();
+        if (group == null) {
+            smpPlayer.getPlayer().sendMessage(String.format("%s You are not in a group!", Main.getPrefix()));
+            return;
+        }
+
+        if (smpPlayer.getCoins() < amount) {
+            smpPlayer.getPlayer().sendMessage(String.format("%s You do not have enough to deposit that amount!", Main.getPrefix()));
+            return;
+        }
+
+        group.addCoins(amount);
+        smpPlayer.removeCoins(amount);
+        smpPlayer.getPlayer().sendMessage(String.format("%s%s -%s", Main.getPrefix(), ChatColor.RED, amount));
+        for (SMPPlayer member : group.getMembers()) {
+            if (member == null) continue;
+            if (member.getPlayer() == null) continue;
+            if (!member.getPlayer().isOnline()) continue;
+            member.getPlayer().sendMessage(String.format("%s[%s%s%s]%s %s has deposited %s%s%s into the group account!", ChatColor.GRAY, group.getColor(), group.getName(), ChatColor.GRAY, group.getColor(), smpPlayer.getPlayer().getName(), ChatColor.GREEN, amount, group.getColor()));
+        }
+    }
+
+    private void createGroupWithdraw(SMPPlayer smpPlayer, String withdrawAmount) {
+        int amount;
+        try {
+            amount = Integer.parseInt(withdrawAmount);
+        } catch (NumberFormatException e) {
+            smpPlayer.getPlayer().sendMessage(String.format("%s Invalid number!", Main.getPrefix()));
+            return;
+        }
+
+        Group group = smpPlayer.getGroup();
+        if (group == null) {
+            smpPlayer.getPlayer().sendMessage(String.format("%s You are not in a group!", Main.getPrefix()));
+            return;
+        }
+
+        if (group.getCoins() < amount) {
+            smpPlayer.getPlayer().sendMessage(String.format("%s Your group does not have enough to withdraw that amount!", Main.getPrefix()));
+            return;
+        }
+
+        group.removeCoins(amount);
+        smpPlayer.addCoins(amount);
+        smpPlayer.getPlayer().sendMessage(String.format("%s%s +%s", Main.getPrefix(), ChatColor.GREEN, amount));
+        for (SMPPlayer member : group.getMembers()) {
+            if (member == null) continue;
+            if (member.getPlayer() == null) continue;
+            if (!member.getPlayer().isOnline()) continue;
+            member.getPlayer().sendMessage(String.format("%s[%s%s%s]%s %s has withdrawn %s%s%s from the group account!", ChatColor.GRAY, group.getColor(), group.getName(), ChatColor.GRAY, group.getColor(), smpPlayer.getPlayer().getName(), ChatColor.RED, amount, group.getColor()));
+        }
     }
 
     private void sendGroupBalance(SMPPlayer smpPlayer) {
