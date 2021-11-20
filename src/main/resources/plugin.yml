@@ -18,3 +18,6 @@
     pay:
       description: Pay a player
       usage: /pay <name> <amount>
+    shop:
+      description: Open the shop
+      usage: /shop

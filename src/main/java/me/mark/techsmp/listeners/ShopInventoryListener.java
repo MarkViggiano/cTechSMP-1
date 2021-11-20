@@ -72,8 +72,9 @@ public class ShopInventoryListener extends BaseListener {
         e.setCancelled(true);
         ItemStack clickedItem = e.getCurrentItem();
         if (clickedItem == null) return;
-        Shop groupShop = getMain().getGroupShop();
-        ShopItem shopItem = groupShop.getShopItemByMaterial(clickedItem.getType());
+        Shop itemShop = getMain().getItemShop();
+        ShopItem shopItem = itemShop.getShopItemByMaterial(clickedItem.getType());
+        if (shopItem == null) return;
         int cost = shopItem.getCost();
         Player player = smpPlayer.getPlayer();
         /*
@@ -94,46 +95,41 @@ public class ShopInventoryListener extends BaseListener {
                 player.sendMessage(String.format("%s%s -%s", Main.getPrefix(), ChatColor.RED, cost));
                 break;
 
-            case SHIFT_LEFT:
-                int buyCost = (cost / shopItem.getItem().getAmount()) * 64;
-                if (smpPlayer.getCoins() < buyCost) {
-                    player.sendMessage(String.format("%s You cannot afford that item!", Main.getPrefix()));
-                    return;
-                }
-
-                smpPlayer.removeCoins(buyCost);
-                player.getInventory().addItem(new ItemStack(clickedItem.getType(), 64));
-                player.sendMessage(String.format("%s%s -%s", Main.getPrefix(), ChatColor.RED, buyCost));
-                break;
-
             case RIGHT:
 
-                int singleSellCost = shopItem.getSellPrice() / clickedItem.getAmount();
                 if (!player.getInventory().contains(clickedItem.getType())) {
                     player.sendMessage(String.format("%s You do not have any of that item to sell!", Main.getPrefix()));
                     return;
                 }
 
-                smpPlayer.addCoins(singleSellCost);
-                player.getInventory().remove(new ItemStack(clickedItem.getType(), 1));
-                player.updateInventory();
-                player.sendMessage(String.format("%s%s +%s", Main.getPrefix(), ChatColor.GREEN, singleSellCost));
-                break;
-
-            case SHIFT_RIGHT:
-                int stackSellCost = (shopItem.getSellPrice() / clickedItem.getAmount()) * 64;
-                if (!player.getInventory().contains(clickedItem.getType())) {
-                    player.sendMessage(String.format("%s You do not have any of that item to sell!", Main.getPrefix()));
+                if (!removeItem(player, new ItemStack(clickedItem.getType(), clickedItem.getAmount()))) {
+                    player.sendMessage(String.format("%s You do not have enough of that item to sell!", Main.getPrefix()));
                     return;
                 }
-
-                smpPlayer.addCoins(stackSellCost);
-                player.getInventory().remove(new ItemStack(clickedItem.getType(), 64));
+                smpPlayer.addCoins(shopItem.getSellPrice());
                 player.updateInventory();
-                player.sendMessage(String.format("%s%s +%s", Main.getPrefix(), ChatColor.GREEN, stackSellCost));
+                player.sendMessage(String.format("%s%s +%s", Main.getPrefix(), ChatColor.GREEN, shopItem.getSellPrice()));
                 break;
 
         }
     }
+
+    private boolean removeItem(Player player, ItemStack item) {
+        boolean sold = false;
+        ItemStack invItem;
+        for (int slot : player.getInventory().all(item.getType()).keySet()) {
+            invItem = player.getInventory().getItem(slot);
+            if (invItem == null) continue;
+            if (invItem.getAmount() >= item.getAmount()) {
+                invItem.setAmount(invItem.getAmount() - item.getAmount());
+                player.getInventory().setItem(slot, invItem);
+                sold = true;
+                break;
+            }
+        }
+
+        return sold;
+    }
+
 
 }
