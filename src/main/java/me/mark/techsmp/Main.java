@@ -108,10 +108,10 @@ public class Main extends JavaPlugin {
         shop.addItem(new ShopItem(new ItemStack(Material.COOKED_CHICKEN, 16), 60, 85));
         shop.addItem(new ShopItem(new ItemStack(Material.COOKED_PORKCHOP, 16), 55, 80));
         shop.addItem(new ShopItem(new ItemStack(Material.GOLDEN_CARROT, 8), 35, 50));
-        shop.addItem(new ShopItem(new ItemStack(Material.BAKED_POTATO, 8), 25, 40));
+        shop.addItem(new ShopItem(new ItemStack(Material.BAKED_POTATO, 8), 35, 40));
         shop.addItem(new ShopItem(new ItemStack(Material.WHEAT_SEEDS, 32), 35, 50));
         shop.addItem(new ShopItem(new ItemStack(Material.CARROT, 16), 35, 50));
-        shop.addItem(new ShopItem(new ItemStack(Material.POTATO, 8), 35, 50));
+        shop.addItem(new ShopItem(new ItemStack(Material.POTATO, 8), 25, 60));
         shop.addItem(new ShopItem(new ItemStack(Material.MELON_SEEDS, 4), 20, 30));
         shop.addItem(new ShopItem(new ItemStack(Material.PUMPKIN_SEEDS, 4), 20, 30));
         shop.addItem(new ShopItem(new ItemStack(Material.SUGAR_CANE, 16), 55, 80));
